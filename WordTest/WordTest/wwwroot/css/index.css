@@ -1,0 +1,21 @@
+﻿table {
+    width: 100%;
+    text-align: center;
+}
+    table th {
+        text-align: center;
+    }
+
+.Derror {
+    color: red;
+}
+
+.RowSelect {
+    background-color: yellow;
+}
+
+iframe {
+    width: 100%;
+    height: 550px;
+    border: 0px;
+}

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<WordTest.Models.AppPage>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container" style="text-align:right;margin-top:10px;width:100%">
+        <div class="row">
+            <div class="col-md-6" style="text-align:left">
+                您所在的位置：主页>页面管理
+            </div>
+            <div class="col-md-6" style="text-align:right;">
+                <button type="button" class="btn btn-default" onclick="ShowDlg('Add')">新增</button>
+                <button class="btn btn-default" onclick="ShowDlg('Update')">修改</button>
+                <button class="btn btn-default" onclick="Remove()">删除</button>
+                <div class="modal fade" id="customdlg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel" style="text-align:left">页面信息</h4>
+                            </div>
+                            <form action="">
+                                <div class="modal-body" style="text-align:center">
+                                    <table>
+                                        <tr>
+                                            <td align="right" width="35%">
+                                                页面名称&nbsp;
+                                            </td>
+                                            <td align="left">
+                                                <input type="text" id="Name" name="Name" class="validate" />
+                                                <span class="Derror"></span>
+                                            </td>
+                                        </tr>
+                                        <tr><td>&nbsp;</td><td></td></tr>
+                                        <tr>
+                                            <td align="right" width="35%">
+                                                页面类型&nbsp;
+                                            </td>
+                                            <td align="left">
+                                                <input type="text" id="Type" name="Type" class="validate" />
+                                                <span class="Derror"></span>
+                                            </td>
+                                        </tr>
+                                        <tr><td>&nbsp;</td><td></td></tr>
+                                        <tr>
+                                            <td align="right" width="35%">
+                                                页面路径&nbsp;
+                                            </td>
+                                            <td align="left">
+                                                <input type="text" id="Path" name="Path" class="validate" />
+                                                <span class="Derror"></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="modal-footer" style="margin-top:10px">
+                                        <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">
+                                            关闭
+                                        </button>
+                                        <button type="button" class="btn btn-default" onclick="modalSubmit()">
+                                            提交
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div id="gridview">
+       @await Component.InvokeAsync("AppPageComponent", new { page=1,pagesize=9 })
+    </div>
+    <link href="~/css/common/admin.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/common/dictionary.js"></script>
+    <script src="~/js/common/valid.js"></script>
+    <script src="~/js/common/coustomtable.js"></script>
+    <script src="~/js/role/apppage.js"></script>
+    <script src="~/js/apppage/apppage.js"></script>
+</body>
+</html>

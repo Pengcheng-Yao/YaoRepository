@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WordTest.Models.User>
+<div style="overflow:auto;height:410px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Acc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pwd)
+                </th>
+                <th>
+                    <input type="checkbox" id="selectAll" onclick="HeadCheckboxClick(this)" />
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="tb_tr" onmouseover="addbackgroud(this)" onmouseout="removebackgroud(this)">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @{
+                            ViewBag.gender = item.Gender.ToString() == "Male" ? "男" : "女";
+                        }
+                        @ViewBag.gender
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Acc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pwd)
+                    </td>
+                    <td>
+                        <input type="checkbox" id="@item.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<div class="container" style="width:100%">
+    <div class="row">
+        <div class="col-md-9" tyle="text-align:right"> 总计： <label>@ViewBag.Count</label>条数据</div>
+        <div class="col-md-3" style="text-align:right">
+            <div class="btn-group">
+                @{
+                    if (ViewBag.currentPage == 1)
+                    {
+                        <button type="button" class="btn btn-default" id="pre" onclick="pagePre(@ViewBag.CurrentPage)" disabled>上一页</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-default" id="pre" onclick="pagePre(@ViewBag.CurrentPage)">上一页</button>
+                    }
+
+                }
+                <button type="button" class="btn btn-info">@ViewBag.CurrentPage / @ViewBag.MaxPage </button>
+                @{
+                    if (ViewBag.CurrentPage == ViewBag.MaxPage)
+                    {
+                        <button type="button" class="btn btn-default" id="next" onclick="pageNext(@ViewBag.CurrentPage)" disabled>下一页</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-default" id="next" onclick="pageNext(@ViewBag.CurrentPage)">下一页</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

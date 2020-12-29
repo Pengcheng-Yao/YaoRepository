@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WordTest.Models.User>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link href="~/css/index.css" rel="stylesheet" />
+    <style>
+        iframe {
+            width: 100%;
+            height: 550px;
+            border: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="text-align:center">
+                <div class="well">
+                    <h1>
+                        English Word Test System
+                    </h1>
+                    <h5 style="text-align:right"> Made in 2020-08-20  </h5>
+                    <h5 style="text-align:right">Greator: Mr.Yao</h5>
+                </div>
+            </div>
+            <div class="col-md-12" style="text-align:center">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="./Users/index" target="content">角色管理</a></li>
+                    <li><a href="./Roles/index" target="content">用户管理</a></li>
+                    <li><a href="./AppPage/index" target="content">页面管理</a></li>
+                    <li><a href="./Users/index" target="content">权限管理</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <iframe name="content" id="content" src="./Users/index"></iframe>
+            </div>
+        </div>
+    </div>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script>
+        var activeBar = $(".active");
+        $(document).ready(function () {
+            $("li").click(function () {
+                if (activeBar != null || typeof (activeBar) != "undefined") { $(activeBar).removeClass("active"); }
+                $(this).addClass("active");
+                activeBar = $(this);
+            })
+        });
+
+        function activeSelectedBar(bar) {
+            if (activeBar != null || typeof (activeBar) != "undefined")
+                $(activeBar).removeClass("active");
+            $(bar).addClass("active");
+        }
+
+    </script>
+</body>
+</html>

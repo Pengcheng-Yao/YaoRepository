@@ -1,0 +1,117 @@
+﻿@*@model IEnumerable<WordTest.Models.User>*@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+  
+
+</head>
+<body>
+    <div class="container" style="text-align:right;margin-top:10px;width:100%">
+        <div class="row">
+            <div class="col-md-6" style="text-align:left">
+                您所在的位置：主页>用户管理
+            </div>
+            <div class="col-md-6" style="text-align:right;">
+                <button type="button" class="btn btn-default" onclick="ShowDlg('Add')">新增</button>
+                <button class="btn btn-default" onclick="ShowDlg('Update')">修改</button>
+                <button class="btn btn-default" onclick="Remove()">删除</button>
+                <div class="modal fade" id="Userdlg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel" style="text-align:left">用户信息</h4>
+                            </div>
+                            <form action="">
+                                <div class="modal-body" style="text-align:center">
+                                    <table>
+                                        <tr>
+                                            <td align="right" width="35%">
+                                                姓名&nbsp;
+
+                                            </td>
+                                            <td align="left">
+                                                <input type="text" id="Name" name="Name" class="validate" />
+                                                <span class="Derror"></span>
+                                            </td>
+                                        </tr>
+                                        <tr><td>&nbsp;</td><td></td></tr>
+                                        <tr>
+                                            <td align="right" width="35%">
+                                                性别&nbsp;
+                                            </td>
+                                            <td align="left">
+                                                <select id="Gender">
+                                                    <option value="2" selected="selected">女</option>
+                                                    <option value="1">男</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr><td>&nbsp;</td><td></td></tr>
+                                        <tr>
+                                            <td align="right" width="35%">
+                                                年龄&nbsp;
+                                            </td>
+                                            <td align="left">
+                                                <input type="text" id="Age" name="Age" class="validate" />
+                                                <span class="Derror"></span>
+                                            </td>
+                                        </tr>
+                                        <tr><td>&nbsp;</td><td></td></tr>
+                                        <tr>
+                                            <td align="right" width="35%">
+                                                账号&nbsp;
+                                            </td>
+                                            <td align="left">
+                                                <input type="text" id="Acc" name="Acc" class="validate" />
+                                                <span class="Derror"></span>
+                                            </td>
+                                        </tr>
+                                        <tr><td>&nbsp;</td><td></td></tr>
+                                        <tr>
+                                            <td align="right" width="35%">
+                                                密码&nbsp;
+                                            </td>
+                                            <td align="left">
+                                                <input type="text" id="Pwd" name="Pwd" class="validate" />
+                                                <span class="Derror"></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="modal-footer" style="margin-top:10px">
+                                        <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">
+                                            关闭
+                                        </button>
+                                        <button type="button" class="btn btn-default" onclick="modalSubmit()">
+                                            提交
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div id="userGridview">
+        @await Component.InvokeAsync("UserInfo", new { page = 1, pagesize = 9 })
+    </div>
+    <link href="~/css/common/admin.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/common/dictionary.js"></script>
+    <script src="~/js/common/valid.js"></script>
+    <script src="~/js/user/user.js"></script>
+    <script src="~/js/common/coustomtable.js"></script>
+</body>
+</html>
